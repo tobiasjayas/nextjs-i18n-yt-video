@@ -2,9 +2,12 @@ import Head from "next/head";
 import Link from "next/link";
 import classes from "../styles/layout.module.css";
 import { useRouter } from "next/router";
+import useTranslation from "next-translate/useTranslation";
 
 export default function Layout({ children }) {
   let router = useRouter();
+  let { t } = useTranslation();
+  console.log(router.locales);
 
   return (
     <div>
@@ -16,10 +19,10 @@ export default function Layout({ children }) {
       <header className={classes.header}>
         <nav className={classes.nav}>
           <Link href="/">
-            <a>Home</a>
+            <a>{t("common:home")}</a>
           </Link>
           <Link href="/about">
-            <a>About</a>
+            <a>{t("common:about")}</a>
           </Link>
         </nav>
       </header>
@@ -27,7 +30,7 @@ export default function Layout({ children }) {
       <main className={classes.content}>{children}</main>
 
       <footer className={classes.footer}>
-        <p>© 2020</p>
+        <p>© 2021</p>
 
         <ul>
           {router.locales.map((locale) => (
